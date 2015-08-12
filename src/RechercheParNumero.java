@@ -1,8 +1,4 @@
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import java.util.Scanner;
 
 public class RechercheParNumero {
@@ -10,7 +6,7 @@ public class RechercheParNumero {
 	void afficher() {
 		
 		//Contenu du répertoire
-		HashMap repertory2 = new HashMap();
+		HashMap<String,String> repertory2 = new HashMap<>();
 		repertory2.put("0601020300","brian");
 		repertory2.put("0601020301","iyad");
 		repertory2.put("0601020302","michael");
@@ -33,7 +29,12 @@ public class RechercheParNumero {
 						String nbr = number.next();
 						nbr.toLowerCase();
 						String val=(String)repertory2.get(nbr);
-						System.out.println("Le numéro de "+nbr+" appartient à: " + val);
+						if(val != null) {
+							System.out.println("Le numéro de "+nbr+" appartient à: " + val);
+						} else {
+							System.out.println("Ce numéro n'existe pas ou n'est pas enregistré.");
+							continue;
+						}
 						rparnum = true;
 					} else {
 						if (yesorno.equalsIgnoreCase("non")) {

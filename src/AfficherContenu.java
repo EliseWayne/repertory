@@ -1,7 +1,5 @@
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.Scanner;
 
@@ -9,7 +7,7 @@ public class AfficherContenu {
 	void afficher() {
 	
 	//Contenu du répertoire
-	HashMap repertory = new HashMap();
+	HashMap<String, String> repertory = new HashMap<>();
 	repertory.put("brian","0601020300");
 	repertory.put("iyad","0601020301");
 	repertory.put("michael","0601020302");

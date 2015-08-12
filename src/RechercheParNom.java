@@ -1,15 +1,11 @@
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import java.util.Scanner;
 
 public class RechercheParNom {
 	void afficher() {
 		
 		//Contenu du répertoire
-		HashMap repertory = new HashMap();
+		HashMap<String, String> repertory = new HashMap<>();
 		repertory.put("brian","0601020300");
 		repertory.put("iyad","0601020301");
 		repertory.put("michael","0601020302");
@@ -31,7 +27,11 @@ public class RechercheParNom {
 							String answer = name.next();
 							answer.toLowerCase();
 							String val=(String)repertory.get(answer);
-							System.out.println("Le numéro de "+answer+" est: " + val);
+							if (val != null) {
+								System.out.println("Le numéro de "+answer+" est: " + val);
+							} else {
+								System.out.println("Cette personne n'existe pas ou n'est pas enregistrée.");
+							}
 							rparnom = true;
 						} else {
 							if (yesorno.equalsIgnoreCase("non")) {
