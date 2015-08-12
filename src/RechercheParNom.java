@@ -31,6 +31,7 @@ public class RechercheParNom {
 								System.out.println("Le numéro de "+answer+" est: " + val);
 							} else {
 								System.out.println("Cette personne n'existe pas ou n'est pas enregistrée.");
+								continue;
 							}
 							rparnom = true;
 						} else {
