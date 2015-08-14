@@ -1,3 +1,5 @@
+import java.io.FilterInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -20,12 +22,17 @@ public class AfficherContenu {
 		boolean repert = false;
 			do {
 					System.out.println("Souhaitez-vous afficher tout le contenu du répertoire?");
-						Scanner all = new Scanner(System.in);
+					Scanner all = new Scanner(new FilterInputStream(System.in) {
+					    @Override
+					    public void close() throws IOException {
+					        //don't close System.in! 
+					    }
+					});
 							String yesorno = all.next();
 								yesorno.toLowerCase();
 									if (yesorno.equalsIgnoreCase("oui")) {
-											Set keySet =repertory.keySet(); 
-												Iterator it= keySet.iterator(); 
+											Set<String> keySet =repertory.keySet(); 
+												Iterator<String> it= keySet.iterator(); 
 													while (it.hasNext()){Object key =it.next(); 
 														System.out.println("Nom: "+(String)key+" - Numéro: "+ repertory.get(key));}
 														repert = true;
@@ -37,6 +44,7 @@ public class AfficherContenu {
 															System.out.println(" Répondez par 'oui' ou par 'non' ! ");
 														}
 											}
+									all.close();
 				} while (repert == false);
 		}
 		}

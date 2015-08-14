@@ -1,3 +1,5 @@
+import java.io.FilterInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -19,13 +21,24 @@ public class RechercheParNumero {
 		boolean rparnum = false;
 		do {
 			System.out.println("Souhaitez-vous effectuer une recherche par numéro?");
-			Scanner all = new Scanner(System.in);
+			
+			Scanner all = new Scanner(new FilterInputStream(System.in) {
+			    @Override
+			    public void close() throws IOException {
+			        //don't close System.in! 
+			    }
+			});
 			String yesorno = all.next();
 				yesorno.toLowerCase();
 					if (yesorno.equalsIgnoreCase("oui")) {
 						System.out.println(" ");
 						System.out.println("Entrez un numéro -sans espaces:");
-						Scanner number = new Scanner(System.in);
+						Scanner number = new Scanner(new FilterInputStream(System.in) {
+						    @Override
+						    public void close() throws IOException {
+						        //don't close System.in! 
+						    }
+						});
 						String nbr = number.next();
 						nbr.toLowerCase();
 						String val=(String)repertory2.get(nbr);
@@ -36,6 +49,7 @@ public class RechercheParNumero {
 							continue;
 						}
 						rparnum = true;
+						number.close();
 					} else {
 						if (yesorno.equalsIgnoreCase("non")) {
 							System.out.println(" ");
@@ -44,6 +58,7 @@ public class RechercheParNumero {
 							System.out.println(" Répondez par 'oui' ou par 'non' ! ");								
 						}
 					}
+					all.close();
 		} while (rparnum == false);
 		}
 }
