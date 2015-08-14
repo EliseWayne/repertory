@@ -21,30 +21,30 @@ public class AfficherContenu {
 		//proposer d'afficher le contenu du répertoire:
 		boolean repert = false;
 			do {
-					System.out.println("Souhaitez-vous afficher tout le contenu du répertoire?");
-					Scanner all = new Scanner(new FilterInputStream(System.in) {
-					    @Override
-					    public void close() throws IOException {
-					        //don't close System.in! 
-					    }
+				System.out.println("Souhaitez-vous afficher tout le contenu du répertoire?");
+				Scanner all = new Scanner(new FilterInputStream(System.in) {
+				   @Override
+				  public void close() throws IOException {
+					   //don't close System.in! 
+				   }
 					});
-							String yesorno = all.next();
-								yesorno.toLowerCase();
-									if (yesorno.equalsIgnoreCase("oui")) {
-											Set<String> keySet =repertory.keySet(); 
-												Iterator<String> it= keySet.iterator(); 
-													while (it.hasNext()){Object key =it.next(); 
-														System.out.println("Nom: "+(String)key+" - Numéro: "+ repertory.get(key));}
-														repert = true;
-										} else {
-												if (yesorno.equalsIgnoreCase("non")) {
-														System.out.println(" ");
-															repert = true;
-													} else {
-															System.out.println(" Répondez par 'oui' ou par 'non' ! ");
-														}
-											}
-									all.close();
-				} while (repert == false);
+				String yesorno = all.next();
+				yesorno.toLowerCase();
+				if (yesorno.equalsIgnoreCase("oui")) {
+					Set<String> keySet =repertory.keySet(); 
+					Iterator<String> it= keySet.iterator(); 
+					while (it.hasNext()){Object key =it.next(); 
+					System.out.println("Nom: "+(String)key+" - Numéro: "+ repertory.get(key));}
+					repert = true;
+				} else {
+					if (yesorno.equalsIgnoreCase("non")) {
+						System.out.println(" ");
+						repert = true;
+					} else {
+						System.out.println(" Répondez par 'oui' ou par 'non' ! ");
+							}
+					}
+						all.close();
+			} while (repert == false);
 		}
 		}
